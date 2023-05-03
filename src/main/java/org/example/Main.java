@@ -74,7 +74,7 @@ class SearchStrategyMap implements SearchStrategy{
     }
 }
 
-//AdapterPattern
+//AdapterPattern.
 class SearchFindAdapter implements SearchStrategy {
     private FindAlgorithm findAlgorithm;
 
