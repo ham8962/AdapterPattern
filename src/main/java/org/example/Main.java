@@ -16,6 +16,14 @@ class MyProgram{
         searchButton.setSearchStrategy(new SearchStrategyMap());
     }
 
+    //...AdapterPattern
+
+    public void setModeMovie () {
+        searchButton.setSearchStrategy(
+                new SearchFindAdapter(new FindMovieAltorithm())
+        );
+    }
+
     public void testProgram(){
         searchButton.onClick();
         setModeImage();
@@ -24,6 +32,18 @@ class MyProgram{
         searchButton.onClick();
         setModeMap();
         searchButton.onClick();
+    }
+}
+
+interface FindAlgorithm {
+    public void find (boolean global);
+}
+
+class FindMovieAlgorithm implements FindAlgorithm {
+    public void find (boolean global) {
+        System.out.println(
+                "find movie" + (global ? " globally" : "")
+        );
     }
 }
 
@@ -51,6 +71,18 @@ class SearchStrategyNews implements SearchStrategy{
 class SearchStrategyMap implements SearchStrategy{
     public void search(){
         System.out.println("search Map");
+    }
+}
+
+//AdapterPattern
+class SearchFindAdapter implements SearchStrategy {
+    private FindAlgorithm findAlgorithm;
+
+    public SearchFindAdapter (FindAlgorithm _findAlgorithm) {
+        findAlgorithm = _findAlgorithm;
+    }
+    public void search () {
+        findAlgorithm.find(true);
     }
 }
 
